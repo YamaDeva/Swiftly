@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  NavigationBar.swift
 //  
 //
 //  Created by Martina D'urso on 09/06/2020.
