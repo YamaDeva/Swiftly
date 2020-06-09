@@ -9,15 +9,6 @@ import UIKit
 
 public extension UIView {
 
-  func setBackgroundColor(with gradient: Gradient) {
-    let gradientLayer = CAGradientLayer()
-    gradientLayer.colors = [gradient.secondColor.cgColor, gradient.firstColor.cgColor]
-    gradientLayer.startPoint = gradient.direction.startPoint
-    gradientLayer.endPoint = gradient.direction.endPoint
-    gradientLayer.frame = bounds
-    layer.insertSublayer(gradientLayer, at: 0)
-  }
-
   func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 10, scale: Bool = true) {
     layer.masksToBounds = false
     layer.shadowColor = color.cgColor
