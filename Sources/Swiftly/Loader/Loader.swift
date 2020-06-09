@@ -16,7 +16,6 @@ public struct Loader {
 
   public static func start(backgroundIndicatorColor: UIColor = .clear, indicatorColor: UIColor = .darkGray, backgroundColor: UIColor = .white, view: UIView, viewColor: UIColor = .clear) {
     if vSpinner == nil {
-
       let spinnerView = UIView.init(frame: view.bounds)
       spinnerView.backgroundColor = viewColor
       let backView: UIView = UIView(frame: CGRect(x: spinnerView.center.x - 50, y: spinnerView.center.y - 50, width: 100, height: 100))
