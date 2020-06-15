@@ -36,10 +36,10 @@ public class PagerTabBar: UIView, UIScrollViewDelegate {
 
   public func setPage() {
     let pageWidth = self.frame.size.width / CGFloat(pages.count)
-    for (index, _) in pages.enumerated() {
+    for (index, item) in pages.enumerated() {
       let button = UIButton(type: .custom)
       button.frame = CGRect(x: pageWidth * CGFloat(index), y: 0, width: pageWidth, height: self.frame.height)
-      button.apply(title: button.titleLabel!.text!,
+      button.apply(title: item,
                    attributes: (index == 0) ? buttonAttributes.selected : buttonAttributes.default)
       button.tag = index
       button.addTarget(self, action: #selector(selectPage(_:)), for: .touchUpInside)
