@@ -24,12 +24,12 @@ public extension UIImageView {
     }
   }
 
-  func loadFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
+  func loadFrom(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
     guard let url = URL(string: link) else { return }
     loadImage(from: url, contentMode: mode)
   }
 
-  func downloadImage(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
+  func downloadImage(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
     let cacheID = NSString(string: link)
 
     if let cachedData = imageCache.object(forKey: cacheID) as? UIImage {

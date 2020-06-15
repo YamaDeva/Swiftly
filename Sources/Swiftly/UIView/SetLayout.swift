@@ -37,7 +37,7 @@ public extension UIView {
     guard let withBorder = withBorder else {return}
 
     let borderLayer = CAShapeLayer()
-    borderLayer.path = mask.path // Reuse the Bezier path
+    borderLayer.path = mask.path
     borderLayer.fillColor = UIColor.clear.cgColor
     borderLayer.strokeColor = withBorder.0.cgColor
     borderLayer.lineWidth = withBorder.1

@@ -13,7 +13,7 @@ public extension UIView {
     let bundle = Bundle(for: self)
     let nib = UINib(nibName: "\(self)", bundle: bundle)
     guard let view = nib.instantiate(withOwner: owner).first as? UIView else {
-      fatalError("Errore nel caricamento del nib \(owner).xib")
+      fatalError("Error loading nib \(owner).xib")
     }
     view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     view.frame = owner.bounds
