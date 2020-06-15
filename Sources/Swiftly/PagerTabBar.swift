@@ -16,25 +16,25 @@ public class PagerTabBar: UIView, UIScrollViewDelegate {
   private let _lineView = UIView()
   private var lineViewHeight: CGFloat?
   private var arrayButton: [UIButton] = []
-  var buttonAttributes: (selected: [NSAttributedString.Key: Any],
+  public var buttonAttributes: (selected: [NSAttributedString.Key: Any],
     default: [NSAttributedString.Key: Any]) = (selected: [:],
                                                default: [:])
-  var lineView: (height: CGFloat, color: UIColor) = (height: 3, color: .white)
-  var delegate: PageSelector?
+  public var lineView: (height: CGFloat, color: UIColor) = (height: 3, color: .white)
+  public var delegate: PageSelector?
 
-  var selectedPage = Int() {
+  public var selectedPage = Int() {
     didSet {
       selectPageByScroll()
     }
   }
 
-  var pages = [String]() {
+  public var pages = [String]() {
     didSet {
       setPage()
     }
   }
 
-  func setPage() {
+  public func setPage() {
     let pageWidth = self.frame.size.width / CGFloat(pages.count)
     for (index, _) in pages.enumerated() {
       let button = UIButton(type: .custom)
@@ -65,7 +65,7 @@ public class PagerTabBar: UIView, UIScrollViewDelegate {
     }
   }
 
-  func selectPageByScroll() {
+  public func selectPageByScroll() {
     arrayButton.forEach({ (button) in
       button.apply(title: button.titleLabel!.text!,
                    attributes: (button.tag != selectedPage) ? buttonAttributes.default : buttonAttributes.selected)
@@ -77,7 +77,7 @@ public class PagerTabBar: UIView, UIScrollViewDelegate {
   }
 }
 
-extension UIButton {
+public extension UIButton {
   func apply(title: String, attributes: [NSAttributedString.Key: Any]) {
     let attributedString = NSAttributedString(string: title, attributes: attributes)
     self.setAttributedTitle(attributedString, for: .normal)
