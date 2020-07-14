@@ -79,6 +79,7 @@ public extension UIViewController {
     button.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
     button.contentVerticalAlignment = .fill
     button.contentHorizontalAlignment = .fill
+    button.isUserInteractionEnabled = false
     let barButton = UIBarButtonItem(customView: button)
     navigationItem.rightBarButtonItems = [barButton]
   }
