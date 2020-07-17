@@ -84,6 +84,19 @@ public extension UIViewController {
     navigationItem.rightBarButtonItems = [barButton]
   }
 
+  func setupLeftImage(imageName: String, size: CGSize =  CGSize(width:25, height:22)) {
+    let button = UIButton(type: .custom)
+    let imageButton = UIImage(named: imageName)
+    button.setImage(imageButton, for: UIControl.State.normal)
+    button.imageView?.contentMode = .scaleAspectFit
+    button.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+    button.contentVerticalAlignment = .fill
+    button.contentHorizontalAlignment = .fill
+    button.isUserInteractionEnabled = false
+    let barButton = UIBarButtonItem(customView: button)
+    navigationItem.leftBarButtonItems = [barButton]
+  }
+
 
   func setupLeftButton(target: Any, action: Selector, imageName: String, size: CGSize =  CGSize(width:25, height:22)) {
     let button = UIButton(type: .custom)
