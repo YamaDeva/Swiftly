@@ -39,7 +39,6 @@ public class Loader {
         view.addSubview(spinnerView)
       }
       vSpinner = spinnerView
-      semaphore.signal()
     }
   }
 
@@ -47,6 +46,7 @@ public class Loader {
     DispatchQueue.main.async {
       vSpinner?.removeFromSuperview()
       vSpinner = nil
+      semaphore.signal()
     }
   }
 }
