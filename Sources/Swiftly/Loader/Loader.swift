@@ -7,14 +7,18 @@
 
 import UIKit
 
-public struct Loader {
+public class Loader {
+
   private static var vSpinner : UIView?
+
+  static private let semaphore = DispatchSemaphore(value: 1)
 
   public static var state: Bool {
     vSpinner != nil
   }
 
   public static func start(backgroundIndicatorColor: UIColor = .clear, indicatorColor: UIColor = .darkGray, backgroundColor: UIColor = .white, view: UIView, viewColor: UIColor = .clear) {
+    semaphore.wait()
     if vSpinner == nil {
       let spinnerView = UIView.init(frame: view.bounds)
       spinnerView.backgroundColor = viewColor
@@ -35,6 +39,7 @@ public struct Loader {
         view.addSubview(spinnerView)
       }
       vSpinner = spinnerView
+      semaphore.signal()
     }
   }
 
