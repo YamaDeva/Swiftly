@@ -57,13 +57,17 @@ public extension UIViewController {
     navigationItem.rightBarButtonItems = [barButton]
   }
 
-  func setupRightButton(target: Any, action: Selector, imageName: String, size: CGSize =  CGSize(width:25, height:22)) {
+  func setupRightButton(target: Any, action: Selector, text: String? = nil, imageName: String? = nil, size: CGSize =  CGSize(width:25, height:22)) {
     let button = UIButton(type: .custom)
-    let imageButton = UIImage(named: imageName)
-    button.setImage(imageButton, for: UIControl.State.normal)
-    button.imageView?.contentMode = .scaleAspectFit
+    if let image = imageName {
+      let imageButton = UIImage(named: image)
+      button.setImage(image, for: UIControl.State.normal)
+      button.imageView?.contentMode = .scaleAspectFit
+      button.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+    } else {
+      button.setTitle(text, for: .normal)
+    }
     button.addTarget(target, action: action, for: .touchUpInside)
-    button.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
     button.contentVerticalAlignment = .fill
     button.contentHorizontalAlignment = .fill
     let barButton = UIBarButtonItem(customView: button)
