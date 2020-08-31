@@ -44,7 +44,7 @@ public extension UIViewController {
     navigationItem.leftBarButtonItems = [barButton]
   }
 
-  func setupRightTitle(title: String, font: UIFont, color: UIColor = .black) {
+  func setupRightTitle(target: Any? = nil, action: Selector? = nil, title: String, font: UIFont, color: UIColor = .black) {
     let button = UIButton(type: .custom)
     let dict1: [NSAttributedString.Key: Any] =  [
       .font: font,
@@ -53,20 +53,19 @@ public extension UIViewController {
     let attString = NSMutableAttributedString()
     attString.append(NSAttributedString(string: title, attributes: dict1))
     button.setAttributedTitle(attString, for: .normal)
+    if target != nil && action != nil{
+      button.addTarget(target!, action: action!, for: .touchUpInside)
+    }
     let barButton = UIBarButtonItem(customView: button)
     navigationItem.rightBarButtonItems = [barButton]
   }
 
-  func setupRightButton(target: Any, action: Selector, text: String? = nil, imageName: String? = nil, size: CGSize =  CGSize(width:25, height:22)) {
+  func setupRightButton(target: Any, action: Selector, imageName: String, size: CGSize =  CGSize(width:25, height:22)) {
     let button = UIButton(type: .custom)
-    if let image = imageName {
-      let imageButton = UIImage(named: image)
-      button.setImage(imageButton, for: UIControl.State.normal)
-      button.imageView?.contentMode = .scaleAspectFit
-      button.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-    } else {
-      button.setTitle(text, for: .normal)
-    }
+    let imageButton = UIImage(named: imageName)
+    button.setImage(imageButton, for: UIControl.State.normal)
+    button.imageView?.contentMode = .scaleAspectFit
+    button.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
     button.addTarget(target, action: action, for: .touchUpInside)
     button.contentVerticalAlignment = .fill
     button.contentHorizontalAlignment = .fill
