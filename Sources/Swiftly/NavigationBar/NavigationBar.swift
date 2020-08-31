@@ -61,7 +61,7 @@ public extension UIViewController {
     let button = UIButton(type: .custom)
     if let image = imageName {
       let imageButton = UIImage(named: image)
-      button.setImage(image, for: UIControl.State.normal)
+      button.setImage(imageButton, for: UIControl.State.normal)
       button.imageView?.contentMode = .scaleAspectFit
       button.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
     } else {
