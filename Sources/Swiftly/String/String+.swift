@@ -28,4 +28,12 @@ public extension String {
     return attributedString
   }
 
+  extension String {
+    func chunkFormatted(withChunkSize chunkSize: Int = 4,
+                        withSeparator separator: Character = " ") -> String {
+      return self.filter { $0 != separator }.chunk(n: chunkSize)
+        .map{ String($0) }.joined(separator: String(separator))
+    }
+  }
+
 }
