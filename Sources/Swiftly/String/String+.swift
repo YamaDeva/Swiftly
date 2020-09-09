@@ -35,3 +35,17 @@ public extension String {
   }
 
 }
+
+extension Collection {
+  public func chunk(n: IndexDistance) -> [SubSequence] {
+    var res: [SubSequence] = []
+    var i = startIndex
+    var j: Index
+    while i != endIndex {
+      j = index(i, offsetBy: n, limitedBy: endIndex) ?? endIndex
+      res.append(self[i..<j])
+      i = j
+    }
+    return res
+  }
+}
