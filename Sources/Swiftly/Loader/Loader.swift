@@ -17,7 +17,7 @@ public class Loader {
     vSpinner != nil
   }
 
-  public static func start(backgroundIndicatorColor: UIColor = .clear, indicatorColor: UIColor = .darkGray, backgroundColor: UIColor = .white, view: UIView, viewColor: UIColor = .clear) {
+  public static func start(shadowColor: UIColor = .lightGray, backgroundIndicatorColor: UIColor = .clear, indicatorColor: UIColor = .darkGray, backgroundColor: UIColor = .white, view: UIView, viewColor: UIColor = .clear) {
    // semaphore.wait()
     if vSpinner == nil {
       let spinnerView = UIView.init(frame: view.bounds)
@@ -26,7 +26,7 @@ public class Loader {
       backView.center = spinnerView.center
       backView.layer.cornerRadius = 6.0
       backView.backgroundColor = backgroundColor
-      backView.dropShadow(color: .lightGray, offSet: CGSize(width: 2, height: 2))
+      backView.dropShadow(color: shadowColor, offSet: CGSize(width: 2, height: 2))
       let ai = UIActivityIndicatorView.init(style: .whiteLarge)
       ai.backgroundColor = backgroundIndicatorColor
       ai.color = indicatorColor
