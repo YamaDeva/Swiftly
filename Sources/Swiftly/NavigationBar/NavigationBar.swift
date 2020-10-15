@@ -116,6 +116,7 @@ public extension UIViewController {
 
   func removeLeftButton() {
     navigationController?.navigationBar.topItem?.leftBarButtonItems = nil
+    navigationItem.setHidesBackButton(true, animated: true)
   }
 
 }
