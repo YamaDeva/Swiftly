@@ -47,7 +47,7 @@ public class PagerTabBar: UIView, UIScrollViewDelegate {
       self.addSubview(button)
     }
 
-    _lineView.frame = CGRect(x: 0, y: self.frame.maxY - lineView.height, width: pageWidth, height: lineView.height)
+    _lineView.frame = CGRect(x: 0, y: self.frame.size.height - lineView.height, width: pageWidth, height: lineView.height)
     _lineView.backgroundColor = lineView.color
     self.addSubview(_lineView)
 
