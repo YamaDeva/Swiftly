@@ -1,0 +1,48 @@
+//
+//  KeyboardNotifications.swift
+//  
+//
+//  Created by Martina D'urso on 15/06/21.
+//
+
+import UIKit
+
+public extension UIViewController {
+  @objc func keyboardWillShowSelector(_ notification: Notification) {
+    guard let userInfo = notification.userInfo as? [String: AnyObject],
+      let keyboardFrameEnd = userInfo[UIResponder.keyboardFrameEndUserInfoKey]?.cgRectValue else {
+        return
+    }
+
+    let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+
+    if additionalSafeAreaInsets.bottom == 0 {
+      UIView.animate(withDuration: animationDuration ?? 0.25) {
+        self.additionalSafeAreaInsets.bottom = keyboardFrameEnd.size.height - self.view.safeAreaInsets.bottom
+      }
+    }
+  }
+
+  @objc func keyboardWillHideSelector(_ notification: Notification) {
+    let userInfo = (notification.userInfo as? [String: AnyObject])
+    let animationDuration = userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+
+    UIView.animate(withDuration: animationDuration ?? 0.25) {
+      self.additionalSafeAreaInsets.bottom = .zero
+    }
+  }
+
+  /// Register the `UIViewController` for keyboard frame change notifications.
+  ///
+  /// - Important: Remember to remove observer `self` after using this.
+  func registerKeyboardNotifications() {
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(keyboardWillShowSelector),
+                                           name: UIResponder.keyboardWillShowNotification,
+                                           object: nil)
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(keyboardWillHideSelector),
+                                           name: UIResponder.keyboardWillHideNotification,
+                                           object: nil)
+  }
+}
