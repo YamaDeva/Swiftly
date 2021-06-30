@@ -1,3 +1,3 @@
 # Swiftly
 
-A description of this package.
+A package containing various utilities and tools to approach to your projects more... swiftly. 
