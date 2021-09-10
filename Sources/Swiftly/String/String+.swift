@@ -28,24 +28,4 @@ public extension String {
     return attributedString
   }
 
-  func chunkFormatted(withChunkSize chunkSize: Int = 4,
-                      withSeparator separator: Character = " ") -> String {
-    return self.filter { $0 != separator }.chunk(n: chunkSize)
-      .map{ String($0) }.joined(separator: String(separator))
-  }
-
-}
-
-extension Collection {
-  public func chunk(n: IndexDistance) -> [SubSequence] {
-    var res: [SubSequence] = []
-    var i = startIndex
-    var j: Index
-    while i != endIndex {
-      j = index(i, offsetBy: n, limitedBy: endIndex) ?? endIndex
-      res.append(self[i..<j])
-      i = j
-    }
-    return res
-  }
 }

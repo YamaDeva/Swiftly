@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "5C8DCD00-CB99-43F7-AFFC-4CB3089C1BFE",
+      "name" : "Configuration 1",
+      "options" : {
+        "language" : "it"
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "SwiftlyTests",
+        "name" : "SwiftlyTests"
+      }
+    }
+  ],
+  "version" : 1
+}

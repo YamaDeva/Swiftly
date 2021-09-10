@@ -5,9 +5,9 @@
 //  Created by Martina D'urso on 01/07/21.
 //
 
-import Foundation
+import UIKit
 
-class CheckSecurity {
+open class CheckSecurity {
 
   static func getPackageName() -> String{
     return Bundle.main.bundleIdentifier ?? "Bundle not found"
