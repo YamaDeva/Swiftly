@@ -8,15 +8,22 @@
 import UIKit
 
 public extension UIViewController {
-
+  
   func setClearNavigation() {
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
     self.navigationController?.navigationBar.shadowImage = UIImage()
     self.navigationController?.navigationBar.isTranslucent = true
     self.navigationController?.view.backgroundColor = UIColor.clear
   }
-
+  
   func setupNavigation(title: String? = nil, colorTitle: UIColor = .white, fontName: String = "HelveticaNeue-UltraLight", fontSize: CGFloat = 20 , barTintColor: UIColor, imageName: String = "") {
+    if #available(iOS 13.0, *) {
+      let appearance = UINavigationBarAppearance()
+      appearance.configureWithOpaqueBackground()
+      appearance.backgroundColor = barTintColor
+      self.navigationController?.navigationBar.standardAppearance = appearance
+      self.navigationController?.navigationBar.scrollEdgeAppearance = self.navigationController?.navigationBar.standardAppearance
+    }
     self.navigationController?.navigationBar.barTintColor = barTintColor
     self.navigationController?.navigationBar.isTranslucent = false
     navigationController?.navigationBar.titleTextAttributes = [
@@ -29,15 +36,8 @@ public extension UIViewController {
       let imageView = UIImageView(image: logo)
       self.navigationItem.titleView = imageView
     }
-    if #available(iOS 13.0, *) {
-         let appearance = UINavigationBarAppearance()
-         appearance.configureWithOpaqueBackground()
-         appearance.backgroundColor = barTintColor
-         self.navigationController?.navigationBar.standardAppearance = appearance
-         self.navigationController?.navigationBar.scrollEdgeAppearance = self.navigationController?.navigationBar.standardAppearance
-       }
   }
-
+  
   func setupLeftTitle(title: String, font: UIFont, color: UIColor = .black) {
     let button = UIButton(type: .custom)
     let dict1: [NSAttributedString.Key: Any] =  [
@@ -50,7 +50,7 @@ public extension UIViewController {
     let barButton = UIBarButtonItem(customView: button)
     navigationItem.leftBarButtonItems = [barButton]
   }
-
+  
   func setupRightTitle(target: Any? = nil, action: Selector? = nil, title: String, font: UIFont, color: UIColor = .black) {
     let button = UIButton(type: .custom)
     let dict1: [NSAttributedString.Key: Any] =  [
@@ -66,7 +66,7 @@ public extension UIViewController {
     let barButton = UIBarButtonItem(customView: button)
     navigationItem.rightBarButtonItems = [barButton]
   }
-
+  
   func setupRightButton(target: Any, action: Selector, imageName: String, size: CGSize =  CGSize(width:25, height:22)) {
     let button = UIButton(type: .custom)
     let imageButton = UIImage(named: imageName)
@@ -79,8 +79,8 @@ public extension UIViewController {
     let barButton = UIBarButtonItem(customView: button)
     navigationItem.rightBarButtonItems = [barButton]
   }
-
-
+  
+  
   func setupRightImage(imageName: String, size: CGSize =  CGSize(width:25, height:22)) {
     let button = UIButton(type: .custom)
     let imageButton = UIImage(named: imageName)
@@ -93,7 +93,7 @@ public extension UIViewController {
     let barButton = UIBarButtonItem(customView: button)
     navigationItem.rightBarButtonItems = [barButton]
   }
-
+  
   func setupLeftImage(imageName: String, size: CGSize =  CGSize(width:25, height:22)) {
     let button = UIButton(type: .custom)
     let imageButton = UIImage(named: imageName)
@@ -106,8 +106,8 @@ public extension UIViewController {
     let barButton = UIBarButtonItem(customView: button)
     navigationItem.leftBarButtonItems = [barButton]
   }
-
-
+  
+  
   func setupLeftButton(target: Any, action: Selector, imageName: String, size: CGSize =  CGSize(width:25, height:22)) {
     let button = UIButton(type: .custom)
     let imageButton = UIImage(named: imageName)
@@ -120,10 +120,10 @@ public extension UIViewController {
     let barButton = UIBarButtonItem(customView: button)
     navigationItem.leftBarButtonItems = [barButton]
   }
-
+  
   func removeLeftButton() {
     navigationController?.navigationBar.topItem?.leftBarButtonItems = nil
     navigationItem.setHidesBackButton(true, animated: true)
   }
-
+  
 }
