@@ -17,13 +17,7 @@ public extension UIViewController {
   }
   
   func setupNavigation(title: String? = nil, colorTitle: UIColor = .white, fontName: String = "HelveticaNeue-UltraLight", fontSize: CGFloat = 20 , barTintColor: UIColor, imageName: String = "") {
-    if #available(iOS 13.0, *) {
-      let appearance = UINavigationBarAppearance()
-      appearance.configureWithOpaqueBackground()
-      appearance.backgroundColor = barTintColor
-      self.navigationController?.navigationBar.standardAppearance = appearance
-      self.navigationController?.navigationBar.scrollEdgeAppearance = self.navigationController?.navigationBar.standardAppearance
-    }
+    
     self.navigationController?.navigationBar.barTintColor = barTintColor
     self.navigationController?.navigationBar.isTranslucent = false
     navigationController?.navigationBar.titleTextAttributes = [
@@ -35,6 +29,14 @@ public extension UIViewController {
       let logo = UIImage(named: imageName)
       let imageView = UIImageView(image: logo)
       self.navigationItem.titleView = imageView
+    }
+    if #available(iOS 13.0, *) {
+      let appearance = UINavigationBarAppearance()
+      appearance.configureWithOpaqueBackground()
+      appearance.backgroundColor = barTintColor
+      appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: colorTitle]
+      self.navigationController?.navigationBar.standardAppearance = appearance
+      self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
   }
   
