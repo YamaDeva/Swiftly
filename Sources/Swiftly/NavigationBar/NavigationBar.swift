@@ -16,29 +16,46 @@ public extension UIViewController {
     self.navigationController?.view.backgroundColor = UIColor.clear
   }
   
-  func setupNavigation(title: String? = nil, colorTitle: UIColor = .white, fontName: String = "HelveticaNeue-UltraLight", fontSize: CGFloat = 20 , barTintColor: UIColor, imageName: String = "") {
-    
-    self.navigationController?.navigationBar.barTintColor = barTintColor
-    self.navigationController?.navigationBar.isTranslucent = false
-    navigationController?.navigationBar.titleTextAttributes = [
-      .font: UIFont(name: fontName, size: fontSize)!,
-      .foregroundColor: colorTitle
-    ]
-    self.navigationItem.title = title
-    if imageName != ""{
-      let logo = UIImage(named: imageName)
-      let imageView = UIImageView(image: logo)
-      self.navigationItem.titleView = imageView
-    }
-    if #available(iOS 13.0, *) {
-      let appearance = UINavigationBarAppearance()
-      appearance.configureWithOpaqueBackground()
-      appearance.backgroundColor = barTintColor
-      appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: colorTitle]
-      self.navigationController?.navigationBar.standardAppearance = appearance
-      self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
-    }
-  }
+	func setupNavigation(title: String? = nil, colorTitle: UIColor = .white, fontName: String = "HelveticaNeue-UltraLight", fontSize: CGFloat = 20 , barTintColor: UIColor, imageName: String = "") {
+		
+		self.navigationController?.navigationBar.barTintColor = barTintColor
+		self.navigationController?.navigationBar.isTranslucent = false
+		navigationController?.navigationBar.titleTextAttributes = [
+			.font: UIFont(name: fontName, size: fontSize)!,
+			.foregroundColor: colorTitle
+		]
+		self.navigationItem.title = title
+		if imageName != ""{
+			let logo = UIImage(named: imageName)
+			let imageView = UIImageView(image: logo)
+			self.navigationItem.titleView = imageView
+		}
+		if #available(iOS 13.0, *) {
+			let appearance = UINavigationBarAppearance()
+			appearance.configureWithOpaqueBackground()
+			appearance.backgroundColor = barTintColor
+			appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: colorTitle]
+			self.navigationController?.navigationBar.standardAppearance = appearance
+			self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+			fixNavShadow()
+		}
+	}
+	
+	func fixNavShadow() {
+		if #available(iOS 13.0, *) {
+			self.navigationController?.navigationBar.standardAppearance.shadowImage = UIImage()
+			self.navigationController?.navigationBar.standardAppearance.shadowColor = .clear
+			self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowImage = UIImage()
+			self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = .clear
+			self.navigationController?.navigationBar.compactAppearance?.shadowImage = UIImage()
+			self.navigationController?.navigationBar.compactAppearance?.shadowColor = .clear
+		}
+		
+		if #available(iOS 15.0, *) {
+			self.navigationController?.navigationBar.compactScrollEdgeAppearance?.shadowImage = UIImage()
+			self.navigationController?.navigationBar.compactScrollEdgeAppearance?.shadowColor = .clear
+		}
+	}
   
   func setupLeftTitle(title: String, font: UIFont, color: UIColor = .black) {
     let button = UIButton(type: .custom)

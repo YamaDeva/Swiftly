@@ -57,6 +57,7 @@ public extension UIDevice {
       default:                                        return identifier
       }
       #endif
+			
     }
     return mapToDevice(identifier: identifier)
   }()
