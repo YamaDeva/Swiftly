@@ -16,7 +16,7 @@ public extension UIViewController {
     self.navigationController?.view.backgroundColor = UIColor.clear
   }
   
-	func setupNavigation(title: String? = nil, colorTitle: UIColor = .white, fontName: String = "HelveticaNeue-UltraLight", fontSize: CGFloat = 20 , barTintColor: UIColor, imageName: String = "") {
+	func setupNavigation(title: String? = nil, colorTitle: UIColor = .white, fontName: String = "HelveticaNeue-UltraLight", fontSize: CGFloat = 20 , barTintColor: UIColor, imageName: String = "", withShadow: Bool = true) {
 		
 		self.navigationController?.navigationBar.barTintColor = barTintColor
 		self.navigationController?.navigationBar.isTranslucent = false
@@ -37,7 +37,9 @@ public extension UIViewController {
 			appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: colorTitle]
 			self.navigationController?.navigationBar.standardAppearance = appearance
 			self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
-			fixNavShadow()
+			if !withShadow {
+				fixNavShadow()
+			}
 		}
 	}
 	
